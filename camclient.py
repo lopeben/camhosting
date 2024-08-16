@@ -1,6 +1,7 @@
 import cv2
 import time
 import requests
+from mysecrets import AWS_ENDPOINT, LOCAL_ENDPOINT
 
 class VideoCamera:
     def __init__(self):
@@ -46,7 +47,8 @@ def generate(camera):
         frame = camera.get_frame()
         yield frame
         # Send the frame to the endpoint
-        response = requests.post('http://127.0.0.1:5000/receive_endpoint', data=frame)
+        # response = requests.post(LOCAL_ENDPOINT, data=frame)
+        response = requests.post(AWS_ENDPOINT, data=frame)
 
 
 if __name__ == '__main__':
