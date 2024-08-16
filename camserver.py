@@ -1,5 +1,6 @@
 import os
 import cv2
+import time
 import logging
 import platform
 import numpy as np
@@ -8,7 +9,7 @@ import numpy as np
 # from PIL import Image
 from flask import Flask, request
 from flask_socketio import SocketIO
-from flask import Flask, render_template, Response
+from flask import Flask, Response, stream_with_context, render_template
 
 
 app = Flask(__name__)
@@ -58,8 +59,8 @@ def receive_frame():
     return {"status": "Frame received and processed"}
 
 
-@app.route('/video_feed')
-def video_feed():
+@app.route('/video_stream')
+def video_stream():
     def generate_frame():
         while True:
             # Retrieve the processed frame
@@ -71,6 +72,30 @@ def video_feed():
     return Response(generate_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
+@app.route('/image_feed')
+def image_feed():
+    def generate_frame():
+        last_frame = None
+        while True:
+            # Retrieve the processed frame
+            jpeg_frame = retrieve_frame()
+
+            # If the frame has changed, yield it
+            if jpeg_frame != last_frame:
+                yield (b'--frame\r\n'
+                       b'Content-Type: image/jpeg\r\n\r\n' + jpeg_frame + b'\r\n')
+                last_frame = jpeg_frame
+
+            # Sleep for a while to reduce CPU usage
+            time.sleep(0.1)
+
+    return Response(stream_with_context(generate_frame()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route('/')
+def index():
+    return render_template('stream.html')
+
 
 if __name__ == '__main__':
     # app.run(debug=True)
@@ -81,41 +106,4 @@ if __name__ == '__main__':
         # Production setting WSGI
         socketio.run(app, debug=False, host='0.0.0.0', port=80)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from flask import Flask, request
-# import cv2
-# import numpy as np
-
-# app = Flask(__name__)
-
-# @app.route('/receive_frame', methods=['POST'])
-# def receive_frame():
-#     frame_data = request.data
-#     nparr = np.fromstring(frame_data, np.uint8)
-#     frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
-#     # Write the frame to a file
-#     cv2.imwrite('received_frame.jpg', frame)
-
-#     return {"status": "Frame received and saved"}
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
 

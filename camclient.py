@@ -1,7 +1,9 @@
 import cv2
 import time
+import platform
 import requests
 from mysecrets import AWS_ENDPOINT, LOCAL_ENDPOINT
+
 
 class VideoCamera:
     def __init__(self):
@@ -40,6 +42,11 @@ class VideoCamera:
         print(frame.shape)  # Print out the shape of the frame
         ret, jpeg = cv2.imencode('.jpg', frame)
         return jpeg.tobytes()
+    
+
+def is_mac():
+    return platform.system() == 'Darwin'
+
 
 def generate(camera):
     while True:
@@ -47,13 +54,21 @@ def generate(camera):
         frame = camera.get_frame()
         yield frame
         # Send the frame to the endpoint
-        # response = requests.post(LOCAL_ENDPOINT, data=frame)
-        response = requests.post(AWS_ENDPOINT, data=frame)
+        if is_mac():
+            response = requests.post(LOCAL_ENDPOINT, data=frame)
+        else:
+            response = requests.post(AWS_ENDPOINT, data=frame)
+
+
+
+def main():
+    camera = VideoCamera()
+    for frame in generate(camera):
+        time.sleep(1)
+
+
 
 
 if __name__ == '__main__':
-    camera = VideoCamera()
-    for frame in generate(camera):
-        time.sleep(10)
-        # pass  # The frame is already being sent in the generate function
+    main()
 

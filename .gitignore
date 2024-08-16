@@ -1,3 +1,4 @@
 frame.jpg
 .DS_Store
 mysecrets.py
+__pycache__/
