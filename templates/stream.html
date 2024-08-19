@@ -2,27 +2,47 @@
 <html>
 <head>
     <style>
-        #video-stream {
-            width: 320px;
-            height: 240px;
-            border: 1px solid black;
-        }
-        #image-feed {
-            width: 320px;
-            height: 240px;
-            border: 1px solid red;
-        }
         .row {
             display: flex;
             align-items: center;
         }
-        .status-text {
-            margin: 0 15px;
+        #video-stream {
+            width: 20vw;
+            height: 15vw;
+            border: 1px solid black;
+            margin-left: 5vw;
+            margin-right: 5vw;
+        }
+        #image-feed {
+            width: 20vw;
+            height: 15vw;
+            border: 1px solid red;
+            margin-left: 0vw;
+            margin-right: 5vw;
+        }
+        .text-box {
+            width: 20vw;
+            height: 10vw;
+            /* margin: 0 1vw; */
+            align-items: center; /* vertically align text */
+            justify-content: center; /* horizontally align text */
+            font-size: 5vw; /* Add this line */
+            margin-left: 0vw;
+            margin-right: 5vw;
+        }
+        .button {
+            width: 20vw;
+            height: 10vw;
+            align-items: center; /* vertically align text */
+            justify-content: center; /* horizontally align text */
+            font-size: 3vw; /* Add this line */
+            margin-left: 0vw;
+            margin-right: 5vw;
         }
         .divider {
             border: 0;
-            border-top: 1px solid #ccc;  /* This sets the color and thickness of the line */
-            margin: 1vw 0;  /* This adds some space above and below the line */
+            border-top: 1px solid #ccc;
+            margin: 1vw 0;
         }
     </style>
 </head>
@@ -30,9 +50,9 @@
     <div class="row">
         <img id="video-stream" src="/video_stream" />
         <img id="image-feed" src="/image_feed" />
-        <p class="status-text">Status: Loading...</p>
-        <button type="button">Confirm</button>
-        <!-- <hr class="divider"> -->
+        <input type="text" class="text-box" placeholder="00000">
+        <button type="button" class="button"> Confirm</button>
     </div>
 </body>
 </html>
+
