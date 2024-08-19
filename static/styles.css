@@ -1,0 +1,61 @@
+/* .row is a container holding video-stream, image-feed, text-box and button elements */
+.row {
+    display: flex;
+    align-items: center;
+}
+#video-stream {
+    width: 20vw;
+    height: 15vw;
+    border: 1px solid black;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+#image-feed {
+    width: 20vw;
+    height: 15vw;
+    border: 1px solid red;
+    margin-left: 0vw;
+    margin-right: 5vw;
+}
+.text-box {
+    width: 20vw;
+    height: 10vw;
+    align-items: center; /* vertically align text */
+    justify-content: center; /* horizontally align text */
+    font-size: 5vw; /* Add this line */
+    margin-left: 0vw;
+    margin-right: 5vw;
+}
+.button {
+    width: 20vw;
+    height: 10vw;
+    align-items: center; /* vertically align text */
+    justify-content: center; /* horizontally align text */
+    font-size: 3vw; /* Add this line */
+    margin-left: 0vw;
+    margin-right: 5vw;
+}
+
+
+/* hr and hr.variants are separator used to separate the row containers */
+hr.top{
+    border: 0;
+    height: 0.15vw;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin-top: 10vw;
+    margin-bottom: 2vw;
+}
+hr.middle {
+    border: 0;
+    height: 0.15vw;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+hr.bottom {
+    border: 0;
+    height: 0.15vw;
+    background-image: linear-gradient(to right, rgba(0, 0, 255, 0), rgba(53, 53, 163, 0.567), rgba(0, 0, 255, 0)); /* Change color to blue */
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+}
