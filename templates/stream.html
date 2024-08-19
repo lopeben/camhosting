@@ -2,6 +2,14 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <script>
+        window.onload = function() {
+            var source = new EventSource("/text_feed");
+            source.onmessage = function(event) {
+                document.querySelector('.text-box').value = event.data;
+            };
+        }
+    </script>
 </head>
 <body>
     <hr class="top">

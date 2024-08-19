@@ -92,6 +92,17 @@ def image_feed():
     return Response(stream_with_context(generate_frame()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
+@app.route('/text_feed')
+def text_feed():
+    def generate():
+        while True:
+            # yield 'data: {}\n\n'.format(time.ctime())
+            yield 'data: {}\n\n'.format("00043")
+            time.sleep(1)
+
+    return Response(generate(), mimetype='text/event-stream')
+
+
 @app.route('/')
 def index():
     return render_template('stream.html')
