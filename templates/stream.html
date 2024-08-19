@@ -39,20 +39,44 @@
             margin-left: 0vw;
             margin-right: 5vw;
         }
-        .divider {
+        hr.top{
             border: 0;
-            border-top: 1px solid #ccc;
-            margin: 1vw 0;
+            height: 0.15vw;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin-top: 10vw;
+            margin-bottom: 2vw;
+        }
+        hr.middle {
+            border: 0;
+            height: 0.15vw;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin-top: 2vw;
+            margin-bottom: 2vw;
+        }
+        hr.bottom {
+            border: 0;
+            height: 0.15vw;
+            background-image: linear-gradient(to right, rgba(0, 0, 255, 0), rgba(0, 0, 255, 0.75), rgba(0, 0, 255, 0)); /* Change color to blue */
+            margin-top: 2vw;
+            margin-bottom: 3vw;
         }
     </style>
 </head>
 <body>
+    <hr class="top">
+    <div class="row"> <!-- This is the horizontal line -->
+        <img id="video-stream" src="/video_stream" />
+        <img id="image-feed" src="/image_feed" />
+        <input type="text" class="text-box" placeholder="00000">
+        <button type="button" class="button"> Confirm</button>
+    </div>
+    <hr class="middle"> 
     <div class="row">
         <img id="video-stream" src="/video_stream" />
         <img id="image-feed" src="/image_feed" />
         <input type="text" class="text-box" placeholder="00000">
         <button type="button" class="button"> Confirm</button>
     </div>
+    <hr class="bottom"> 
 </body>
 </html>
-
