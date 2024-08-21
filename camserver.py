@@ -108,7 +108,7 @@ def index():
     return render_template('stream.html')
 
 
-if __name__ == '__main__':
+def main():
     # app.run(debug=True)
     if is_mac():
         # Debug setting WSGI
@@ -116,5 +116,10 @@ if __name__ == '__main__':
     else:
         # Production setting WSGI
         socketio.run(app, debug=False, host='0.0.0.0', port=80)
+
+
+if __name__ == '__main__':
+    main()
+
 
 

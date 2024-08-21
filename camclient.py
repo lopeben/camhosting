@@ -60,13 +60,10 @@ def generate(camera):
             response = requests.post(AWS_ENDPOINT, data=frame)
 
 
-
 def main():
     camera = VideoCamera()
     for frame in generate(camera):
         time.sleep(1)
-
-
 
 
 if __name__ == '__main__':
